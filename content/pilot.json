@@ -1,0 +1,492 @@
+{
+  "schema_version": "1.0.0",
+  "sources": [
+    {
+      "id": "community-em-dash-2025",
+      "url": "https://community.openai.com/t/what-are-your-strategies-for-spotting-ai-writing/1150515",
+      "title": "What are your strategies for spotting AI writing?",
+      "creators": [
+        "cdonvd0s"
+      ],
+      "publisher": "OpenAI Developer Community",
+      "source_type": "first-person-report",
+      "published_at": {
+        "value": "2025-03-24",
+        "precision": "day"
+      },
+      "retrieved_at": "2026-11-18",
+      "locator": "Opening post, 24 March 2025, 01:46",
+      "summary": "A forum participant associates frequent em dashes with generated text, while warning against sole use.",
+      "reuse_note": "Paraphrase and link only; no copied examples or full-text redistribution.",
+      "access_status": "accessible",
+      "review_depth": "relevant-full-text",
+      "version": "Opening post as retrieved",
+      "publication_status": "Community opinion; not an official OpenAI finding.",
+      "independence_group": "community-cdonvd0s",
+      "study": null
+    },
+    {
+      "id": "jcq-guidance-2026",
+      "url": "https://www.jcq.org.uk/wp-content/uploads/sites/2/2026/10/AI-Use-in-Assessments_Sep26_v5.pdf.pdf",
+      "title": "AI Use in Assessments: Your role in protecting the integrity of qualifications",
+      "creators": [
+        "Joint Council for Qualifications CIC"
+      ],
+      "publisher": "JCQ",
+      "source_type": "institutional-guidance",
+      "published_at": {
+        "value": null,
+        "precision": "unknown"
+      },
+      "retrieved_at": "2026-11-18",
+      "locator": "Printed pages 26–28, stylistic features and overused words",
+      "summary": "Lists em dashes, contrastive framing and emphatic language, with cautions about legitimate human use.",
+      "reuse_note": "Paraphrase and link only; no copied examples or full-text redistribution.",
+      "access_status": "accessible",
+      "review_depth": "relevant-full-text",
+      "version": "Effective September 2026 edition; URL in October directory, neither establishes publication day.",
+      "publication_status": "Institutional guidance; no controlled study for these features supplied in the cited tables.",
+      "independence_group": "jcq-guidance",
+      "study": null
+    },
+    {
+      "id": "juzek-ward-2024-v1",
+      "url": "https://arxiv.org/html/2412.11385v1",
+      "title": "Why Does ChatGPT “Delve” So Much?",
+      "creators": [
+        "Tom S. Juzek",
+        "Zina B. Ward"
+      ],
+      "publisher": "arXiv",
+      "source_type": "primary-study",
+      "published_at": {
+        "value": "2024-12-16",
+        "precision": "day"
+      },
+      "retrieved_at": "2026-11-18",
+      "locator": "Sections 2, 5–7 and Appendix A",
+      "summary": "Identifies 21 focal words using corpus changes and generated abstracts.",
+      "reuse_note": "Paraphrase and link only; no copied examples or full-text redistribution.",
+      "access_status": "accessible",
+      "review_depth": "relevant-full-text",
+      "version": "arXiv v1",
+      "publication_status": "Preprint version reviewed; later COLING proceedings record checked separately.",
+      "independence_group": "juzek-ward-study",
+      "study": {
+        "corpus": "PubMed abstracts, snapshot May 2024.",
+        "models": [
+          "ChatGPT-3.5"
+        ],
+        "prompt_method": "Summarise 2020 abstracts, then generate abstracts from summaries.",
+        "comparison": "9,953 generated abstracts versus 10,000 sampled 2020 originals.",
+        "method": "Frequency-change screening and generated-text comparison.",
+        "limitations": "Manual filtering and task/model specificity constrain generalisation; RLHF explanation remains unsettled.",
+        "replication_status": "not-replicated-here"
+      }
+    },
+    {
+      "id": "juzek-ward-coling-2025",
+      "url": "https://aclanthology.org/2025.coling-main.426/",
+      "title": "Why Does ChatGPT “Delve” So Much?",
+      "creators": [
+        "Tom S. Juzek",
+        "Zina B. Ward"
+      ],
+      "publisher": "ACL Anthology",
+      "source_type": "publication-record",
+      "published_at": {
+        "value": "2025-01",
+        "precision": "month"
+      },
+      "retrieved_at": "2026-11-18",
+      "locator": "Proceedings metadata, pages 6397–6411",
+      "summary": "Confirms January 2025 proceedings publication.",
+      "reuse_note": "Paraphrase and link only; no copied examples or full-text redistribution.",
+      "access_status": "accessible",
+      "review_depth": "metadata-only",
+      "version": "COLING 2025 metadata only",
+      "publication_status": "Conference publication; proceedings full text not compared against the reviewed preprint.",
+      "independence_group": "juzek-ward-study",
+      "study": null
+    },
+    {
+      "id": "kobak-2025-v5",
+      "url": "https://arxiv.org/html/2406.07016v5",
+      "title": "Delving into LLM-assisted writing in biomedical publications through excess vocabulary",
+      "creators": [
+        "Dmitry Kobak",
+        "Rita González-Márquez",
+        "Emőke-Ágnes Horvát",
+        "Jan Lause"
+      ],
+      "publisher": "arXiv",
+      "source_type": "primary-study",
+      "published_at": {
+        "value": "2025-07-03",
+        "precision": "day"
+      },
+      "retrieved_at": "2026-11-18",
+      "locator": "Sections 2, 3 and 4; version history at https://arxiv.org/abs/2406.07016",
+      "summary": "Reports aggregate excess style vocabulary; explicitly cannot identify individual assisted abstracts.",
+      "reuse_note": "Paraphrase and link only; no copied examples or full-text redistribution.",
+      "access_status": "accessible",
+      "review_depth": "relevant-full-text",
+      "version": "arXiv v5, reverting to v3; initial preprint submitted 11 June 2024.",
+      "publication_status": "Record links Science Advances publication on 2 July 2025; journal text not independently compared.",
+      "independence_group": "kobak-excess-vocabulary",
+      "study": {
+        "corpus": "15.1 million English PubMed abstracts, 2010–2024.",
+        "models": [],
+        "prompt_method": "Observational corpus analysis; no generation experiment in this design.",
+        "comparison": "Observed 2024 frequencies against extrapolated 2021–2022 baseline.",
+        "method": "Excess word-frequency analysis.",
+        "limitations": "Aggregate inference depends on counterfactual assumptions; cannot identify individual assisted abstracts.",
+        "replication_status": "not-replicated-here"
+      }
+    }
+  ],
+  "patterns": [
+    {
+      "schema_version": "1.0.0",
+      "id": "em-dash-habit",
+      "slug": "em-dash-habit",
+      "title": "The dash with a reputation",
+      "description": "Frequent em dashes have attracted suspicion in some writing discussions.",
+      "category": "punctuation",
+      "language": "en",
+      "evidence_class": "reported-association",
+      "association_scope": "single-attributed-report",
+      "editorial_status": "draft",
+      "publication_approved": false,
+      "scope": "The opening forum post is a report of perception, with JCQ guidance as context; no prevalence claim.",
+      "caveat": "This pattern does not establish AI authorship. Human writing can use it legitimately; evidence is limited to the stated setting.",
+      "source_ids": [
+        "community-em-dash-2025",
+        "jcq-guidance-2026"
+      ],
+      "claims": [
+        {
+          "source_id": "community-em-dash-2025",
+          "claim": "The opening poster associates frequent em dashes with AI writing.",
+          "role": "support",
+          "scope": "Attributed observation only.",
+          "limitations": "No controlled frequency estimate or authorship validation."
+        },
+        {
+          "source_id": "jcq-guidance-2026",
+          "claim": "JCQ lists em dashes among possible stylistic features.",
+          "role": "context",
+          "scope": "Attributed observation only.",
+          "limitations": "No controlled frequency estimate or authorship validation."
+        }
+      ],
+      "examples": [
+        {
+          "text": "One small change—apparently a revolution.",
+          "kind": "invented",
+          "explanation": "Invented illustration of an em dash; a single dash is not a suspicious frequency measurement."
+        }
+      ],
+      "dates": {
+        "first_recorded_here": "2026-11-18",
+        "earliest_source_found": {
+          "date": {
+            "value": "2025-03-24",
+            "precision": "day"
+          },
+          "basis_source_ids": [
+            "community-em-dash-2025"
+          ],
+          "explanation": "Earliest dated supporting report inspected in this bounded search, not the first report anywhere."
+        },
+        "first_observed": {
+          "date": {
+            "value": null,
+            "precision": "unknown"
+          },
+          "basis_source_ids": [],
+          "explanation": "No verified observation date; the habit predates this project."
+        },
+        "last_reviewed": "2026-11-18"
+      },
+      "history": [
+        {
+          "date": "2026-11-18",
+          "from": null,
+          "to": "draft",
+          "reason": "Research pilot created; human editorial review and publication approval outstanding.",
+          "source_ids": [
+            "community-em-dash-2025",
+            "jcq-guidance-2026"
+          ],
+          "actor": "Codex research assistant"
+        }
+      ],
+      "review": {
+        "researched_by": "Codex research assistant",
+        "reviewed_at": "2026-11-18",
+        "decision": "needs-human-review",
+        "approved_by": null,
+        "approved_at": null,
+        "approval_reference": null,
+        "rationale": "Source assessment completed for the bounded draft; Alex has not approved copy, evidence or publication.",
+        "next_review_at": "2027-02-18"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "id": "contrastive-framing",
+      "slug": "contrastive-framing",
+      "title": "The dramatic pivot",
+      "description": "A sentence rejects one framing and immediately supplies another.",
+      "category": "rhetoric",
+      "language": "en",
+      "evidence_class": "reported-association",
+      "association_scope": "single-attributed-report",
+      "editorial_status": "draft",
+      "publication_approved": false,
+      "scope": "Specifically attributed to JCQ assessment guidance; no demonstrated model frequency or detector reliability.",
+      "caveat": "This pattern does not establish AI authorship. Human writing can use it legitimately; evidence is limited to the stated setting.",
+      "source_ids": [
+        "jcq-guidance-2026"
+      ],
+      "claims": [
+        {
+          "source_id": "jcq-guidance-2026",
+          "claim": "JCQ flags repeated contrastive framing.",
+          "role": "support",
+          "scope": "Attributed observation only.",
+          "limitations": "No controlled frequency estimate or authorship validation."
+        }
+      ],
+      "examples": [
+        {
+          "text": "It is not a notebook. It is a new way to think.",
+          "kind": "invented",
+          "explanation": "Invented contrast formula. Its usefulness depends on whether the distinction adds meaning."
+        }
+      ],
+      "dates": {
+        "first_recorded_here": "2026-11-18",
+        "earliest_source_found": {
+          "date": {
+            "value": null,
+            "precision": "unknown"
+          },
+          "basis_source_ids": [],
+          "explanation": "The inspected guidance is effective September 2026, but its publication date is unverified; no origin claim."
+        },
+        "first_observed": {
+          "date": {
+            "value": null,
+            "precision": "unknown"
+          },
+          "basis_source_ids": [],
+          "explanation": "No verified observation date; the habit predates this project."
+        },
+        "last_reviewed": "2026-11-18"
+      },
+      "history": [
+        {
+          "date": "2026-11-18",
+          "from": null,
+          "to": "draft",
+          "reason": "Research pilot created; human editorial review and publication approval outstanding.",
+          "source_ids": [
+            "jcq-guidance-2026"
+          ],
+          "actor": "Codex research assistant"
+        }
+      ],
+      "review": {
+        "researched_by": "Codex research assistant",
+        "reviewed_at": "2026-11-18",
+        "decision": "needs-human-review",
+        "approved_by": null,
+        "approved_at": null,
+        "approval_reference": null,
+        "rationale": "Source assessment completed for the bounded draft; Alex has not approved copy, evidence or publication.",
+        "next_review_at": "2027-02-18"
+      }
+    },
+    {
+      "schema_version": "1.0.0",
+      "id": "delve-style-vocabulary",
+      "slug": "delve-style-vocabulary",
+      "title": "A fondness for delve",
+      "description": "Some research finds particular style words overrepresented in bounded scientific-writing comparisons.",
+      "category": "vocabulary",
+      "language": "en",
+      "evidence_class": "empirical-association",
+      "association_scope": "bounded-study",
+      "editorial_status": "draft",
+      "publication_approved": false,
+      "scope": "Biomedical abstract tasks and corpora in the cited versions; not all models, genres or present-day outputs.",
+      "caveat": "This pattern does not establish AI authorship. Human writing can use it legitimately; evidence is limited to the stated setting.",
+      "source_ids": [
+        "juzek-ward-2024-v1",
+        "juzek-ward-coling-2025",
+        "kobak-2025-v5"
+      ],
+      "claims": [
+        {
+          "source_id": "juzek-ward-2024-v1",
+          "claim": "The study finds focal vocabulary overrepresented in its generated-abstract comparison.",
+          "role": "support",
+          "scope": "ChatGPT-3.5 abstract-generation task.",
+          "limitations": "Task-specific evidence; no replication performed here."
+        },
+        {
+          "source_id": "kobak-2025-v5",
+          "claim": "Corpus-level vocabulary shifts provide related evidence.",
+          "role": "context",
+          "scope": "English PubMed corpus.",
+          "limitations": "Cannot identify individual authorship."
+        },
+        {
+          "source_id": "juzek-ward-coling-2025",
+          "claim": "Proceedings publication is recorded.",
+          "role": "context",
+          "scope": "Publication metadata only.",
+          "limitations": "Not an independent study."
+        }
+      ],
+      "examples": [
+        {
+          "text": "We delve into the intricate details.",
+          "kind": "invented",
+          "explanation": "Invented vocabulary illustration; neither word proves assistance."
+        }
+      ],
+      "dates": {
+        "first_recorded_here": "2026-11-18",
+        "earliest_source_found": {
+          "date": {
+            "value": "2024-12-16",
+            "precision": "day"
+          },
+          "basis_source_ids": [
+            "juzek-ward-2024-v1"
+          ],
+          "explanation": "Earliest pinned version reviewed here that directly supports this task-specific claim. An earlier Kobak preprint exists, but that version was not appraised in this pilot."
+        },
+        "first_observed": {
+          "date": {
+            "value": null,
+            "precision": "unknown"
+          },
+          "basis_source_ids": [],
+          "explanation": "No verified observation date; the habit predates this project."
+        },
+        "last_reviewed": "2026-11-18"
+      },
+      "history": [
+        {
+          "date": "2026-11-18",
+          "from": null,
+          "to": "draft",
+          "reason": "Research pilot created; human editorial review and publication approval outstanding.",
+          "source_ids": [
+            "juzek-ward-2024-v1",
+            "juzek-ward-coling-2025",
+            "kobak-2025-v5"
+          ],
+          "actor": "Codex research assistant"
+        }
+      ],
+      "review": {
+        "researched_by": "Codex research assistant",
+        "reviewed_at": "2026-11-18",
+        "decision": "needs-human-review",
+        "approved_by": null,
+        "approved_at": null,
+        "approval_reference": null,
+        "rationale": "Source assessment completed for the bounded draft; Alex has not approved copy, evidence or publication.",
+        "next_review_at": "2027-02-18"
+      }
+    }
+  ],
+  "candidates": [
+    {
+      "schema_version": "1.0.0",
+      "id": "bombastic-emotion",
+      "discovered_at": "2026-11-18",
+      "discovery": {
+        "method": "User seed and bounded manual primary-source research",
+        "queries": [
+          "AI writing bombastic emotional claims",
+          "AI contrastive framing authorship evidence"
+        ],
+        "run_id": "phase-one-manual-2026-11-18"
+      },
+      "suspected_pattern": "Overly emotional or bombastic claims",
+      "source_ids": [
+        "jcq-guidance-2026"
+      ],
+      "claims": [
+        {
+          "source_id": "jcq-guidance-2026",
+          "claim": "Guidance discusses emphatic language.",
+          "role": "context",
+          "scope": "Attributed observation only.",
+          "limitations": "No controlled frequency estimate or authorship validation."
+        }
+      ],
+      "examples": [
+        {
+          "text": "A profoundly moving update that changes everything.",
+          "kind": "invented",
+          "explanation": "Invented example of an inflated claim, not a model sample."
+        }
+      ],
+      "evidence_gaps": [
+        "The seed combines emotion, hype and unsupported impact claims without a reproducible definition.",
+        "No controlled comparison or adequately specific independent reports appraised for this combined claim."
+      ],
+      "triage_decision": "retain",
+      "rationale": "Narrow the proposed habit and gather direct evidence; related guidance does not validate the broad claim.",
+      "related_pattern_id": null,
+      "publication_approved": false
+    },
+    {
+      "schema_version": "1.0.0",
+      "id": "contrast-proves-ai",
+      "discovered_at": "2026-11-18",
+      "discovery": {
+        "method": "User seed and bounded manual primary-source research",
+        "queries": [
+          "AI writing bombastic emotional claims",
+          "AI contrastive framing authorship evidence"
+        ],
+        "run_id": "phase-one-manual-2026-11-18"
+      },
+      "suspected_pattern": "A contrast formula establishes AI authorship",
+      "source_ids": [
+        "jcq-guidance-2026"
+      ],
+      "claims": [
+        {
+          "source_id": "jcq-guidance-2026",
+          "claim": "The guidance cautions against treating any single feature as definitive.",
+          "role": "counterevidence",
+          "scope": "Attributed observation only.",
+          "limitations": "No controlled frequency estimate or authorship validation."
+        }
+      ],
+      "examples": [
+        {
+          "text": "It is not a notebook. It is a new way to think.",
+          "kind": "invented",
+          "explanation": "Invented rhetorical contrast; no authorship inference follows."
+        }
+      ],
+      "evidence_gaps": [
+        "No validated authorship rule; the claim exceeds the inspected evidence."
+      ],
+      "triage_decision": "reject",
+      "rationale": "Reject the detector claim; preserve the narrower attributed-association draft.",
+      "related_pattern_id": "contrastive-framing",
+      "publication_approved": false
+    }
+  ]
+}

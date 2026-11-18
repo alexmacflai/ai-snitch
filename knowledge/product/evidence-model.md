@@ -9,7 +9,7 @@ description: Proposed record fields, evidence standards, chronology and editoria
 
 Use two axes. `evidence_class` is `candidate`, `reported-association` or `empirical-association`; `editorial_status` is `draft`, `active`, `deprecated` or `reactivated`. An empirical finding is bounded by its study setting and is never an authorship verdict. A popular belief can be documented honestly without being endorsed as empirically reliable.
 
-The following is a proposed JSON data contract, not an implemented schema.
+The first implemented contract is [evidence.schema.json](../../schemas/evidence.schema.json), exercised by [pilot.json](../../content/pilot.json). See [content validation](../engineering/content-validation.md) for commands and semantic checks. The table below describes the model; the schema is authoritative for field names.
 
 | Record | Required fields and constraints |
 |---|---|
@@ -34,7 +34,7 @@ Do not invent confidence percentages. Evidence class describes support, not dete
 
 ## Date semantics
 
-“Earliest source we found” is a bounded research result, never the invention date or first occurrence on the internet. Record search coverage and distinguish source publication from collection date. For month/year precision store the precision rather than manufacturing a day. A later source describing earlier behaviour supports an attributed retrospective claim, with both dates visible. The current three user examples have no verified origin dates.
+“Earliest source we found” is a bounded research result, never the invention date or first occurrence on the internet. Record search coverage and distinguish source publication from collection date. For month/year precision store the precision rather than manufacturing a day. A later source describing earlier behaviour supports an attributed retrospective claim, with both dates visible. The initial user examples have no verified origin dates; inspected source dates are kept separate.
 
 ## Lifecycle
 

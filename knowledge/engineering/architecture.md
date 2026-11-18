@@ -9,7 +9,7 @@ Service eligibility and limits are documented in the [feasibility research](../r
 
 ## Stack
 
-Recommend a public GitHub repository, GitHub Pages on its included `github.io` URL, standard Linux GitHub Actions runners, and a small Python 3 standard-library static generator. Write semantic HTML and CSS; add a small browser-side search over generated JSON only when useful. This avoids runtime hosting, API keys, package fees and a JavaScript dependency tree. It is a recommendation, with no application code installed.
+Recommend a public GitHub repository, GitHub Pages on its included `github.io` URL, standard Linux GitHub Actions runners, and a small Python 3 standard-library static generator. Write semantic HTML and CSS; add a small browser-side search over generated JSON only when useful. This avoids runtime hosting, API keys, package fees and a JavaScript dependency tree. The site stack remains a recommendation; only evidence validation is implemented. See [content validation](content-validation.md) for the current bundle and development dependency.
 
 Pages is static hosting. A build generates HTML, CSS, search JSON, a feed and rules exports. Git stores approved structured records and history. No visitor input is sent to an AI service. Use a project base path consistently for assets and links. An eventual custom domain is excluded from the zero-cost baseline.
 
@@ -17,11 +17,13 @@ Pages is static hosting. A build generates HTML, CSS, search JSON, a feed and ru
 
 | Content | Future path | Status |
 |---|---|---|
-| Approved structured content | `content/patterns/*.json`, `content/sources/*.json` | Proposed |
+| Evidence pilot | `content/pilot.json`, `schemas/evidence.schema.json` | Implemented, unpublished drafts and candidates in one bundle |
+| Later split approved content | `content/patterns/*.json`, `content/sources/*.json` | Proposed |
 | Public-safe scouting leads | `research/inbox/*.json` | Proposed, excluded from site |
 | Confidential notes | Outside public repository | No storage configured |
 | Curated discovery inputs | `config/sources.json`, `config/queries.json` | Proposed |
-| Generator, validator and scout | `tools/` | Proposed |
+| Evidence validator | `tools/validate_content.py` | Implemented; tests in `tests/` |
+| Generator and scout | `tools/` | Proposed |
 | Templates and styles | `site/` | Proposed |
 | Generated site and exports | `dist/` | Proposed, disposable output |
 | Scheduled scout and deploy | `.github/workflows/` | Proposed, not enabled |

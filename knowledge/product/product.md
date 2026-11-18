@@ -11,7 +11,7 @@ AI Snitch will be a public, growing library of stylistic habits people associate
 
 Document patterns, their reported history and changing relevance. Keep insufficiently supported candidates out of the public library. Eventually export a reusable Markdown/rules/skill library for other projects, and use it to review this project's own copy. All services and operations must cost zero money. GitHub Pages is the likely initial host, subject to the researched recommendation.
 
-The current authorised deliverable is local framework setup and comprehensive planning. No site implementation, remote repository creation, publication or live schedule is authorised by this setup request.
+The project is now published in the public [GitHub repository](https://github.com/alexmacflai/ai-snitch). Repository publication is complete; site deployment and a live scouting schedule remain separate proposed work. Repository details are recorded in [setup](../setup.md).
 
 ## Audience assumptions
 

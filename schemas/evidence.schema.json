@@ -1,0 +1,809 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Snitch evidence catalogue v1",
+  "description": "Local evidence pilot. Shape validation plus tools/validate_content.py semantic checks are both required.",
+  "$defs": {
+    "partialDate": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "precision": {
+          "enum": [
+            "day",
+            "month",
+            "year",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "precision"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "precision": {
+                "const": "unknown"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "value": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "dateFact": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "$ref": "#/$defs/partialDate"
+        },
+        "basis_source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "date",
+        "basis_source_ids",
+        "explanation"
+      ],
+      "additionalProperties": false
+    },
+    "claim": {
+      "type": "object",
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "claim": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "role": {
+          "enum": [
+            "support",
+            "context",
+            "counterevidence"
+          ]
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "limitations": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "source_id",
+        "claim",
+        "role",
+        "scope",
+        "limitations"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "kind": {
+          "enum": [
+            "invented",
+            "quotation"
+          ]
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "reuse_basis": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "text",
+        "kind",
+        "explanation"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "quotation"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "source_id",
+              "locator",
+              "reuse_basis"
+            ]
+          },
+          "else": {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "source_id"
+                  ]
+                },
+                {
+                  "required": [
+                    "locator"
+                  ]
+                },
+                {
+                  "required": [
+                    "reuse_basis"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "study": {
+      "type": "object",
+      "properties": {
+        "corpus": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "models": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 0
+        },
+        "prompt_method": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "comparison": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "limitations": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "replication_status": {
+          "enum": [
+            "not-replicated-here",
+            "replicated-here"
+          ]
+        }
+      },
+      "required": [
+        "corpus",
+        "models",
+        "prompt_method",
+        "comparison",
+        "method",
+        "limitations",
+        "replication_status"
+      ],
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "creators": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        },
+        "publisher": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source_type": {
+          "enum": [
+            "primary-study",
+            "first-person-report",
+            "institutional-guidance",
+            "commentary",
+          "publication-record"
+          ]
+        },
+        "published_at": {
+          "$ref": "#/$defs/partialDate"
+        },
+        "retrieved_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "reuse_note": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "access_status": {
+          "enum": [
+            "accessible",
+            "partial",
+            "unavailable"
+          ]
+        },
+        "review_depth": {
+          "enum": [
+            "relevant-full-text",
+            "abstract-only",
+            "metadata-only"
+          ]
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "publication_status": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "independence_group": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "study": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/study"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "url",
+        "title",
+        "creators",
+        "publisher",
+        "source_type",
+        "published_at",
+        "retrieved_at",
+        "locator",
+        "summary",
+        "reuse_note",
+        "access_status",
+        "review_depth",
+        "version",
+        "publication_status",
+        "independence_group",
+        "study"
+      ],
+      "additionalProperties": false
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "from": {
+          "enum": [
+            null,
+            "draft",
+            "active",
+            "deprecated",
+            "reactivated"
+          ]
+        },
+        "to": {
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "reactivated"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "actor": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "date",
+        "from",
+        "to",
+        "reason",
+        "source_ids",
+        "actor"
+      ],
+      "additionalProperties": false
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "researched_by": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "decision": {
+          "enum": [
+            "needs-human-review",
+            "approved",
+            "deferred",
+            "rejected"
+          ]
+        },
+        "approved_by": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "approved_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "approval_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "next_review_at": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "researched_by",
+        "reviewed_at",
+        "decision",
+        "approved_by",
+        "approved_at",
+        "approval_reference",
+        "rationale",
+        "next_review_at"
+      ],
+      "additionalProperties": false
+    },
+    "pattern": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "category": {
+          "enum": [
+            "punctuation",
+            "rhetoric",
+            "vocabulary"
+          ]
+        },
+        "language": {
+          "const": "en"
+        },
+        "evidence_class": {
+          "enum": [
+            "candidate",
+            "reported-association",
+            "empirical-association"
+          ]
+        },
+        "association_scope": {
+          "enum": [
+            "single-attributed-report",
+            "multiple-attributed-reports",
+            "bounded-study",
+            "unsubstantiated"
+          ]
+        },
+        "editorial_status": {
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "reactivated"
+          ]
+        },
+        "publication_approved": {
+          "type": "boolean"
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "caveat": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          },
+          "minItems": 0
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/example"
+          },
+          "minItems": 1
+        },
+        "dates": {
+          "type": "object",
+          "properties": {
+            "first_recorded_here": {
+              "type": "string",
+              "format": "date"
+            },
+            "earliest_source_found": {
+              "$ref": "#/$defs/dateFact"
+            },
+            "first_observed": {
+              "$ref": "#/$defs/dateFact"
+            },
+            "last_reviewed": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          "required": [
+            "first_recorded_here",
+            "earliest_source_found",
+            "first_observed",
+            "last_reviewed"
+          ],
+          "additionalProperties": false
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/event"
+          },
+          "minItems": 1
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "slug",
+        "title",
+        "description",
+        "category",
+        "language",
+        "evidence_class",
+        "association_scope",
+        "editorial_status",
+        "publication_approved",
+        "scope",
+        "caveat",
+        "source_ids",
+        "claims",
+        "examples",
+        "dates",
+        "history",
+        "review"
+      ],
+      "additionalProperties": false
+    },
+    "candidate": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+        },
+        "discovered_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "discovery": {
+          "type": "object",
+          "properties": {
+            "method": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "queries": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "minItems": 1
+            },
+            "run_id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+            }
+          },
+          "required": [
+            "method",
+            "queries",
+            "run_id"
+          ],
+          "additionalProperties": false
+        },
+        "suspected_pattern": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          },
+          "minItems": 0
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/example"
+          },
+          "minItems": 1
+        },
+        "evidence_gaps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        },
+        "triage_decision": {
+          "enum": [
+            "retain",
+            "reject",
+            "merged"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "related_pattern_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "publication_approved": {
+          "const": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "discovered_at",
+        "discovery",
+        "suspected_pattern",
+        "source_ids",
+        "claims",
+        "examples",
+        "evidence_gaps",
+        "triage_decision",
+        "rationale",
+        "related_pattern_id",
+        "publication_approved"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      },
+      "minItems": 0
+    },
+    "patterns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/pattern"
+      },
+      "minItems": 0
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/candidate"
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "sources",
+    "patterns",
+    "candidates"
+  ],
+  "additionalProperties": false
+}
